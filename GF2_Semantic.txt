@@ -7,6 +7,7 @@ DEV      =  	("CLOCK", DEV_NAME, digit, {digit})   								|
 DEV_NAME = 	(digit | letter), {digit | letter}								;
 CON      =	O_PIN, '=', I_PIN										;
 O_PIN    =  	(DEV_NAME, '.', 'O', {digit})									|
+		(DEV_NAME)											|
 		(DEV_NAME, '.', ("Q" | "QBAR"))									;
 I_PIN    =  	DEV_NAME, '.', 'I', {digit}									;
 MON      =      (O_PIN | I_PIN)											;
