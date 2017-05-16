@@ -1,0 +1,17 @@
+DEVICES AND A 1,
+	OR  B 1,
+	XOR C,
+	NAND D 3,
+	SWITCH S1 1,
+	SWITCH S2 1,
+	SWITCH S3 1,
+	SWITCH S4 1;
+CONNECT S1 => A.I1,
+	S2 => B.I1,
+	S3 => C.I1,
+	S4 => C.I2,
+	A  => D.I1,
+	B  => D.I2,
+	C  => D.I3;
+MONITOR D;
+
