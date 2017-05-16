@@ -1,0 +1,12 @@
+file     =  	"DEVICES", {DEV, ','}, DEV,';', "CONNECT", {CON, ','}, CON, ';' "MONITOR", {MON, ','}, MON, ';'	;
+DEV      =  	("CLOCK", DEV_NAME, digit, {digit})   								|
+		("SWITCH", DEV_NAME, (1|0))          				 				|
+		(("AND" | "NAND" | "OR" | "NOR"), DEV_NAME, digit, {digit})   					|
+		("D_TYPE", DEV_NAME)                  								|
+		("XOR", DEV_NAME)	             								;
+DEV_NAME = 	(digit | letter), {digit | letter}								;
+CON      =	O_PIN, '=', I_PIN										;
+O_PIN    =  	(DEV_NAME, '.', 'O', {digit})									|
+		(DEV_NAME, '.', ("Q" | "QBAR"))									;
+I_PIN    =  	DEV_NAME, '.', 'I', {digit}									;
+MON      =      (O_PIN | I_PIN)											;
