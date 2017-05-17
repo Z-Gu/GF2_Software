@@ -1,4 +1,4 @@
-file     =  	"DEVICES", {DEV, ','}, DEV,';', "CONNECT", {CON, ','}, CON, ';' "MONITOR", {MON, ','}, MON, ';'	;
+file     =  	"DEVICES", {DEV, ','}, DEV,';', "CONNECT", {CON, ','}, CON, ‘;’, "MONITOR", {MON, ','}, MON, ';'	;
 DEV      =  	("CLOCK", DEV_NAME, digit, {digit})   								|
 		("SWITCH", DEV_NAME, (1|0))          				 				|
 		(("AND" | "NAND" | "OR" | "NOR"), DEV_NAME, [1], digit)   					|
