@@ -67,15 +67,16 @@ number and `_', other than "DEVICES", "CONNECT", "MONITOR", "CLOCK",
 \section{Example definition files}
 \textbf{Circuit 1 definition file.}\\
 \begin{lstlisting}[basicstyle=\small]
-DEVICES AND A 1,
+// This is a single line comment.
+DEVICES AND A 1, // an AND gate called 'A' with one input is declared.
 	OR  B 1,
 	XOR C,
 	NAND D 3,
-	SWITCH S1 1,
+	SWITCH S1 1, // a switch S1 is declared and initialised to 1.
 	SWITCH S2 1,
 	SWITCH S3 1,
 	SWITCH S4 1;
-CONNECT S1 => A.I1,
+CONNECT S1 => A.I1, // switch S1 is connected to the first input of A.
 	S2 => B.I1,
 	S3 => C.I1,
 	S4 => C.I2,
@@ -94,7 +95,7 @@ MONITOR D;
 \newpage
 \n\textbf{Circuit 2 definition file.}
 \begin{lstlisting}[basicstyle=\small]
-DEVICES CLOCK L 100,
+DEVICES CLOCK L 100, // clock output changes every 100 simulation cycles.
 	SWITCH S1 1,
 	SWITCH S2 0,
 	SWITCH S3 0,
@@ -108,6 +109,8 @@ CONNECT S1 => M.SET,
 	M.QBAR => A.I2;
 MONITOR A,
 	QBAR;
+/* A and QBAR are being monitored,
+this is a multiline comment.*/
 \end{lstlisting}
 \begin{figure}[H]
   \centering
