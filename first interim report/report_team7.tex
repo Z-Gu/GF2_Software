@@ -1,6 +1,6 @@
 \documentclass[12pt]{article}
 \textwidth 15.5cm \oddsidemargin 0cm \topmargin -1cm \textheight 24cm \footskip 1.5cm
-\usepackage{epsfig, amsmath,graphicx,psfrag,pstcol, float, listings, caption}
+\usepackage{epsfig, amsmath,graphicx,psfrag,pstcol, float, listings, caption, array}
 \def\n{\noindent}
 \def\u{\underline}
 \def\hs{\hspace}
@@ -60,9 +60,60 @@ number and `_', other than "DEVICES", "CONNECT", "MONITOR", "CLOCK",
 \end{lstlisting}
 
 \section{Syntax error identification and handling}
-
+\begin{center}
+	\begin{tabular}{|m{3cm} | m{6cm} | m{8cm} |}
+		\hline
+		Error Name & Identification & Handling \\
+		\hline
+		Input Connected to Input & I\_PIN =\textgreater  I\_PIN under CONNECT &  Report, syntax error count + 1, continue parsing, cancel simulation \\
+		\hline
+		Input Connected to Output & I\_PIN =\textgreater  O\_PIN under CONNECT &  Report, syntax error count + 1, continue parsing, cancel simulation \\
+		\hline
+		Output Connected to Output & O\_PIN =\textgreater  O\_PIN under CONNECT &  Report, syntax error count + 1, continue parsing, cancel simulation \\
+		\hline
+		No Device Found & Empty DEVICE section & Report, syntax error count + 1, continue parsing, cancel simulation \\
+		\hline
+		No Connection Found & Empty CONNECT section & Report, syntax error count + 1, continue parsing, cancel simulation \\
+		\hline
+		No Monitor Found & Empty MONITOR section & Report, syntax error count + 1, continue parsing, cancel simulation \\
+		\hline
+		Undefined Object & Device used in CONNECT or MONITOR not found in the symbol table & Report, syntax error count + 1, continue parsing, cancel simulation \\
+		\hline
+		Unexpected Token & When the type of token does not match the expected type, e.g. CONNECT used as device name & Report, Report Token type expected,  syntax error count + 1, continue parsing from next valid statement, cancel simulation \\
+		\hline
+	
+	\end{tabular}
+\end{center}
+\newpage
 \section{Semantics error identification and handling}
-
+\begin{center}
+	\begin{tabular}{|m{3cm} | m{6cm} | m{8cm} |}
+		\hline
+		Error Name & Identification & Handling \\
+		\hline
+		Floating Input & Input of a device is not connected to any output. Check after CONNECT section is parsed & Report, semantic error count +1,continue parsing,  cancel simulation \\
+		\hline
+		Unused Output & Output of a device is not connected to any input or monitored. Check after MONITOR section is parsed. & Report, semantic warning count +1, continue parsing \\
+		\hline
+		Multiple Output connected to Single Input Pin & Check if an input pin is referred to twice under CONNECT section after CONNECT section is parsed & Report, semantic error count +1,continue parsing,  cancel simulation \\
+		\hline
+		Invalid Clock Period (T <= 0) & Check if the period of a clock is positive & Report, semantic error count +1,continue parsing,  cancel simulation \\
+		\hline
+		Invalid gate option & Check if the number of input to a gate is an integer between 1 and 16 & Report, semantic error count +1,continue parsing,  cancel simulation \\
+		\hline
+		Invalid Switch option & Check if a switch is set to any state other than 0 and 1 & Report, semantic error count +1,continue parsing,  cancel simulation \\
+		\hline
+		Name Conflict & Check if multiple device have the same name & Report, semantic warning count +1, continue parsing \\
+		\hline
+		Undefined Pin & Check if any pin in CONNECT and MONITOR is not defined for the specific device (e.g. I17 of a NAND gate) & Report, semantic error count +1,continue parsing,  cancel simulation \\
+		\hline
+		
+		
+		
+		
+		
+	\end{tabular}
+\end{center}
 \newpage
 \section{Example definition files}
 \textbf{Circuit 1 definition file.}\\
