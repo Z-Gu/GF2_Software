@@ -1,6 +1,7 @@
 \documentclass[12pt]{article}
 \textwidth 15.5cm \oddsidemargin 0cm \topmargin -1cm \textheight 24cm \footskip 1.5cm
-\usepackage{epsfig, amsmath,graphicx,psfrag,pstcol, float, listings, caption, array}
+\usepackage{epsfig, amsmath,graphicx,psfrag,pstcol, float, listings, caption, array, verbatim}
+\newenvironment{metaverbatim}{\verbatim}{\endverbatim}
 \def\n{\noindent}
 \def\u{\underline}
 \def\hs{\hspace}
@@ -14,13 +15,16 @@
 \maketitle
 \section{Introduction}
 The report focuses on the planning of the whole project in terms of task assignments and time planning. The project is divided into a number of 
-tasks including design and implementation, for which the time lines are set in order to allow time for integration. Additionally the report 
+tasks including design and implementation, for which the time lines are set in order to allow time for integration and testing by another team number. Additionally the report 
 addresses the design of syntax grammar in EBNF language, which will be adhered to throughout the project. It also describes the identification 
-and handling for both syntax and semantic errors. Two examples of the definition files are appended.
+and handling for both syntax and semantic errors. Two examples of the definition files and corresponding setups are appended.
+
+\section{General Approach}
+It is agreed that the pattern of the grammar syntax must be complied throughout the construction of the project. Since there are a few blocks of the programme which have already been given, it is expected to be modified adequately in order to fit the team's design on scanner and parser wherever necessary. The time allocation is expected to allow time for integration of the programme from each functions and the testing of individual functionality by the other team members.
 
 \section{Teamwork planning}
 \subsection{Interface design for scanner and GUI}
-Designed by the whole team, before Tuesday 23 May.\\
+Designed by the whole team, before Tuesday 23 May.
 
 \subsection{$Names$ class implementation}
 Implementation finished by Zhengyang before Saturday 27 May.\\
@@ -45,7 +49,7 @@ Integration and testing by the whole team, before the deadline of the second int
 Modification and testing by the whole team, before the deadline of the final report (Thursday 8 June).
 
 \section{Syntax in EBNF language}
-\begin{lstlisting}[basicstyle=\small]
+\begin{metaverbatim}
 file =  `DEVICES', {DEV, `,'}, DEV, `;', `CONNECT', {CON, `,'}, CON, `;',
 	`MONITOR', {MON, `,'}, MON, `;';
 DEV  =  `CLOCK', DEV_NAME, digit, {digit}  			|
@@ -62,10 +66,11 @@ I_PIN     =  	DEV_NAME, `.', `I', [1], digit		 |
 MON       =     O_PIN | I_PIN;
 
 *DEV_NAME = [0-9a-zA-Z_]+, DEV_NAME can be any combination of letter and 
-number and `_'
+number and '_' provided a name must be assigned.
 
-\end{lstlisting}
+\end{metaverbatim}
 
+\newpage
 \section{Syntax error identification and handling}
 \begin{center}
 	\begin{tabular}{|m{3cm} | m{6cm} | m{8cm} |}
@@ -98,21 +103,21 @@ number and `_'
 		\hline
 		Error Name & Identification & Handling \\
 		\hline
-		Floating Input & Input of a device is not connected to any output. Check using $checknetwork$ after CONNECT section is parsed & Report, semantic error count +1,continue parsing,  cancel simulation \\
+		Floating Input & Input of a device is not connected to any output. Check using $checknetwork$ after CONNECT section is parsed & Report, semantic error count +1, continue parsing,  cancel simulation \\
 		\hline
 		Unused Output & Output of a device is not connected to any input or monitored. Check after MONITOR section is parsed. & Report, semantic warning count +1, continue parsing \\
 		\hline
-		Multiple Output Connected to Single Input Pin & Check if an input pin is referred to twice under CONNECT section after CONNECT section is parsed & Report, semantic error count +1,continue parsing,  cancel simulation \\
+		Multiple Output Connected to Single Input Pin & Check if an input pin is referred to twice under CONNECT section after CONNECT section is parsed & Report, semantic error count +1, continue parsing,  cancel simulation \\
 		\hline
-		Invalid Clock Period (T$\leq$0) & Check if the period of a clock is positive & Report, semantic error count +1,continue parsing,  cancel simulation \\
+		Invalid Clock Period (T$\leq$0) & Check if the period of a clock is positive & Report, semantic error count +1, continue parsing,  cancel simulation \\
 		\hline
-		Invalid Gate Option & Check if the number of input to a gate is an integer between 1 and 16 & Report, semantic error count +1,continue parsing,  cancel simulation \\
+		Invalid Gate Option & Check if the number of input to a gate is an integer between 1 and 16 & Report, semantic error count +1, continue parsing,  cancel simulation \\
 		\hline
-		Invalid Switch Option & Check if a switch is set to any state other than 0 and 1 & Report, semantic error count +1,continue parsing,  cancel simulation \\
+		Invalid Switch Option & Check if a switch is set to any state other than 0 and 1 & Report, semantic error count +1, continue parsing,  cancel simulation \\
 		\hline
 		Name Conflict & Check if multiple device have the same name & Report, semantic warning count +1, continue parsing \\
 		\hline
-		Undefined Pin & Check if any pin in CONNECT and MONITOR is not defined for the specific device (e.g. I17 of a NAND gate) & Report, semantic error count +1,continue parsing,  cancel simulation \\
+		Undefined Pin & Check if any pin in CONNECT and MONITOR is not defined for the specific device (e.g. I17 of a NAND gate) & Report, semantic error count +1, continue parsing,  cancel simulation \\
 		\hline
 		
 		
