@@ -13,12 +13,15 @@
 
 \begin{document}
 \maketitle
+
+\vspace{80mm}
 \section{Introduction}
 The report focuses on the planning of the whole project in terms of task assignments and time planning. The project is divided into a number of 
 tasks including design and implementation, for which the time lines are set in order to allow time for integration and testing by another team number. Additionally the report 
 addresses the design of syntax grammar in EBNF language, which will be adhered to throughout the project. It also describes the identification 
 and handling for both syntax and semantic errors. Two examples of the definition files and corresponding setups are appended.
 
+\newpage
 \section{General Approach}
 It is agreed that the pattern of the grammar syntax must be complied throughout the construction of the project. Since there are a few blocks of the programme which have already been given, it is expected to be modified adequately in order to fit the team's design on scanner and parser wherever necessary. The time allocation is expected to allow time for integration of the programme from each functions and the testing of individual functionality by the other team members.
 
@@ -27,8 +30,8 @@ It is agreed that the pattern of the grammar syntax must be complied throughout 
 Designed by the whole team, before Tuesday 23 May.
 
 \subsection{$Names$ class implementation}
-Implementation finished by Zhengyang before Saturday 27 May.\\
-Testing finished by Shaowu before Tuesday 30 May.
+Implementation already finished by Zhiwei.\\
+Testing finished by Zhengyang before Tuesday 30 May.
 
 \subsection{$Scanner$ class implementation}
 Implementation finished by Shaowu before Saturday 27 May.\\
@@ -48,25 +51,33 @@ Integration and testing by the whole team, before the deadline of the second int
 \subsection{System maintenance}
 Modification and testing by the whole team, before the deadline of the final report (Thursday 8 June).
 
+\newpage
 \section{Syntax in EBNF language}
 \begin{metaverbatim}
 file =  `DEVICES', {DEV, `,'}, DEV, `;', `CONNECT', {CON, `,'}, CON, `;',
-	`MONITOR', {MON, `,'}, MON, `;';
-DEV  =  `CLOCK', DEV_NAME, digit, {digit}  			|
-	`SWITCH', DEV_NAME, ( 1 | 0 )          			|
-	`AND' | `NAND' | `OR' | `NOR', DEV_NAME, [1], digit	|
-	`D_TYPE', DEV_NAME                  			|
-	`XOR', DEV_NAME;
-DEV_NAME* =	digit | letter, {digit | letter | `_'};
-CON       =	O_PIN, `=>', I_PIN;
-O_PIN     =  	DEV_NAME		   |
-		DEV_NAME, `.', `Q' | `QBAR';
-I_PIN     =  	DEV_NAME, `.', `I', [1], digit		 |
-		DEV_NAME, `.', `DATA'|`CLK'|`SET'|`CLEAR';
-MON       =     O_PIN | I_PIN;
+        `MONITOR', {MON, `,'}, MON, `;';
+DEV  =  `CLOCK', DEV_NAME, digit, {digit} |
+        `SWITCH', DEV_NAME, ( 1 | 0 ) |
+        `AND' | `NAND' | `OR' | `NOR', DEV_NAME, [1], digit	|
+        `D_TYPE', DEV_NAME |
+        `XOR', DEV_NAME;
+DEV_NAME  =	 (digit | letter | `_'), {digit | letter | `_'};
+CON       =  O_PIN, `=>', I_PIN;
+O_PIN     =  DEV_NAME |
+             DEV_NAME, `.Q', [`BAR'];
+I_PIN     =  DEV_NAME, `.I', [1], digit	|
+             DEV_NAME, `.', (`DATA'|`CLK'|`SET'|`CLEAR');
+MON       =  O_PIN | I_PIN;
 
-*DEV_NAME = [0-9a-zA-Z_]+, DEV_NAME can be any combination of letter and 
-number and '_' provided a name must be assigned.
+letter = "A" | "B" | "C" | "D" | "E" | "F" | "G"
+       | "H" | "I" | "J" | "K" | "L" | "M" | "N"
+       | "O" | "P" | "Q" | "R" | "S" | "T" | "U"
+       | "V" | "W" | "X" | "Y" | "Z" | "a" | "b"
+       | "c" | "d" | "e" | "f" | "g" | "h" | "i"
+       | "j" | "k" | "l" | "m" | "n" | "o" | "p"
+       | "q" | "r" | "s" | "t" | "u" | "v" | "w"
+       | "x" | "y" | "z" ;
+digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
 
 \end{metaverbatim}
 
@@ -91,7 +102,16 @@ number and '_' provided a name must be assigned.
 		\hline
 		Undefined Object & Device used in CONNECT or MONITOR not found in the symbol table & Report, syntax error count + 1, continue parsing, cancel simulation \\
 		\hline
-		Unexpected Token & When the type of token does not match the expected type, e.g. too many options after DEVICE definition ; Second "=\textgreater" found in a CON statement & Report, Report Token type expected,  syntax error count + 1, continue parsing from next valid statement, cancel simulation \\
+		Unexpected Token & When the type of token does not match the expected type, e.g. 
+		
+		1. too many parameters after DEVICE definition; 
+		
+		2. second `=\textgreater' found in a CON statement; 
+		
+		3. missing `,' or `;';  
+		
+		essentially anything violates the syntax defined in the previous section
+		& Report, Report Token type expected,  syntax error count + 1, continue parsing from next valid statement (jump to the next `,' or `;', whichever is closer), cancel simulation \\
 		\hline
 	
 	\end{tabular}
@@ -115,12 +135,16 @@ number and '_' provided a name must be assigned.
 		\hline
 		Invalid Switch Option & Check if a switch is set to any state other than 0 and 1 & Report, semantic error count +1, continue parsing,  cancel simulation \\
 		\hline
-		Name Conflict & Check if multiple device have the same name & Report, semantic warning count +1, continue parsing \\
+		Name Too Long & Check if name longer than 8 characters & Report, semantic warning count +1, continue parsing, truncate name \\
 		\hline
-		Undefined Pin & Check if any pin in CONNECT and MONITOR is not defined for the specific device (e.g. I17 of a NAND gate) & Report, semantic error count +1, continue parsing,  cancel simulation \\
+		Name Conflict & Check if multiple devices declared have the same name (after truncation, if applicable) & Report, semantic error count +1, continue parsing, cancel simulation \\
 		\hline
-		
-		
+		Invalid Name & Name has character other than letter, number or underscore & Report, semantic error count +1, continue parsing, cancel simulation \\
+		\hline
+		Undefined Pin & Check if any pin in CONNECT and MONITOR is not defined for the specific device (e.g. I17 of a NAND gate, QBAR of an AND gate) & Report, semantic error count +1, continue parsing,  cancel simulation \\
+		\hline
+		Monitor Input Pin & Check all monitored pins are output pins & Report, semantic warning count +1, continue parsing \\
+		\hline
 		
 		
 		
