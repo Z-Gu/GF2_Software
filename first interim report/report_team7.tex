@@ -7,8 +7,11 @@
 \newcommand{\thrfor}{.^{\displaystyle .} .}
 \newcommand{\bvec}[1]{{\bf #1}}
 \captionsetup{justification=centering, width=0.5\textwidth}
+\title{GF2: Software First Interim Report}
+\author{Team 7\\Z.Wang(zw296)\\S.Yuchi(sy334)\\Z.Gu(zg245)}
 
 \begin{document}
+\maketitle
 \section{Introduction}
 The report focuses on the planning of the whole project in terms of task assignments and time planning. The project is divided into a number of 
 tasks including design and implementation, for which the time lines are set in order to allow time for integration. Additionally the report 
@@ -99,13 +102,13 @@ number and `_'
 		\hline
 		Unused Output & Output of a device is not connected to any input or monitored. Check after MONITOR section is parsed. & Report, semantic warning count +1, continue parsing \\
 		\hline
-		Multiple Output connected to Single Input Pin & Check if an input pin is referred to twice under CONNECT section after CONNECT section is parsed & Report, semantic error count +1,continue parsing,  cancel simulation \\
+		Multiple Output Connected to Single Input Pin & Check if an input pin is referred to twice under CONNECT section after CONNECT section is parsed & Report, semantic error count +1,continue parsing,  cancel simulation \\
 		\hline
-		Invalid Clock Period (T <= 0) & Check if the period of a clock is positive & Report, semantic error count +1,continue parsing,  cancel simulation \\
+		Invalid Clock Period (T$\leq$0) & Check if the period of a clock is positive & Report, semantic error count +1,continue parsing,  cancel simulation \\
 		\hline
-		Invalid gate option & Check if the number of input to a gate is an integer between 1 and 16 & Report, semantic error count +1,continue parsing,  cancel simulation \\
+		Invalid Gate Option & Check if the number of input to a gate is an integer between 1 and 16 & Report, semantic error count +1,continue parsing,  cancel simulation \\
 		\hline
-		Invalid Switch option & Check if a switch is set to any state other than 0 and 1 & Report, semantic error count +1,continue parsing,  cancel simulation \\
+		Invalid Switch Option & Check if a switch is set to any state other than 0 and 1 & Report, semantic error count +1,continue parsing,  cancel simulation \\
 		\hline
 		Name Conflict & Check if multiple device have the same name & Report, semantic warning count +1, continue parsing \\
 		\hline
