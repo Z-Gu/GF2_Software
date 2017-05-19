@@ -59,8 +59,8 @@ I_PIN     =  	DEV_NAME, `.', `I', [1], digit		 |
 MON       =     O_PIN | I_PIN;
 
 *DEV_NAME = [0-9a-zA-Z_]+, DEV_NAME can be any combination of letter and 
-number and `_', other than "DEVICES", "CONNECT", "MONITOR", "CLOCK", 
-"SWITCH", "AND", "NAND', "OR", "NOR", "D_TYPE", "XOR"
+number and `_'
+
 \end{lstlisting}
 
 \section{Syntax error identification and handling}
@@ -83,7 +83,7 @@ number and `_', other than "DEVICES", "CONNECT", "MONITOR", "CLOCK",
 		\hline
 		Undefined Object & Device used in CONNECT or MONITOR not found in the symbol table & Report, syntax error count + 1, continue parsing, cancel simulation \\
 		\hline
-		Unexpected Token & When the type of token does not match the expected type, e.g. CONNECT used as device name & Report, Report Token type expected,  syntax error count + 1, continue parsing from next valid statement, cancel simulation \\
+		Unexpected Token & When the type of token does not match the expected type, e.g. too many options after DEVICE definition ; Second "=\textgreater" found in a CON statement & Report, Report Token type expected,  syntax error count + 1, continue parsing from next valid statement, cancel simulation \\
 		\hline
 	
 	\end{tabular}
@@ -95,7 +95,7 @@ number and `_', other than "DEVICES", "CONNECT", "MONITOR", "CLOCK",
 		\hline
 		Error Name & Identification & Handling \\
 		\hline
-		Floating Input & Input of a device is not connected to any output. Check after CONNECT section is parsed & Report, semantic error count +1,continue parsing,  cancel simulation \\
+		Floating Input & Input of a device is not connected to any output. Check using $checknetwork$ after CONNECT section is parsed & Report, semantic error count +1,continue parsing,  cancel simulation \\
 		\hline
 		Unused Output & Output of a device is not connected to any input or monitored. Check after MONITOR section is parsed. & Report, semantic warning count +1, continue parsing \\
 		\hline
