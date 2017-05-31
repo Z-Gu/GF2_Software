@@ -81,10 +81,16 @@ digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
 
 \end{metaverbatim}
 
-\newpage
+\vspace{20mm}
+\section{Error report and handling}
+In general the error detection and report processes are conducted between the scanner and the parser according to the current design. It is designed that for each word the scanner obtains, 
+it is checked with a pre-set data type given by the parser. So if there is a different data type of the current word obtained, then the scanner issues an error. If the data type of 
+the processed word is correct then it is passed on to the parser. If there are any further errors then it will be checked and declared by the parser.
+When there is an error detected, the parser issues an end-of-line or end-of-paragraph command towards the scanner, enabling the scanner to move to the next command sentence. So the 
+scanner will skip the line where the error occurs. Additionally the scanner will keep a record of the location in the file, so it will output the corresponding location.
 \section{Syntax error identification and handling}
 \begin{center}
-	\begin{tabular}{|m{3cm} | m{6cm} | m{8cm} |}
+	\begin{tabular}{|m{3cm} | m{6cm} | m{6cm} |}
 		\hline
 		Error Name & Identification & Handling \\
 		\hline
@@ -119,7 +125,7 @@ digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
 \newpage
 \section{Semantics error identification and handling}
 \begin{center}
-	\begin{tabular}{|m{3cm} | m{6cm} | m{8cm} |}
+	\begin{tabular}{|m{3cm} | m{6cm} | m{6cm} |}
 		\hline
 		Error Name & Identification & Handling \\
 		\hline
@@ -195,7 +201,7 @@ CONNECT S1 => M.SET,
 	M.Q => A.I1,
 	M.QBAR => A.I2;
 MONITOR A,
-	QBAR;
+	M.QBAR;
 /* A and QBAR are being monitored,
 this is a multiline comment.*/
 \end{lstlisting}
