@@ -1,0 +1,63 @@
+DEVICES	SWITCH S1 1, //a vending machine where S1 and S2 indicate whether a 10p or 5p are inserted
+	SWITCH S2 1,
+	SWITCH SWITCH 1, //Unexpected Token: SWITCH cannot be device name
+	SWITCH S4 3, //Semantic Error: Invalid switch
+	AND A1, //Unexpected Token: Number of inputs not defined
+	AND A2 2,
+	AND A3 2,
+	AND A4 22, //Semantic Error: Invalid gate
+	AND A5 2,
+	AND A6 2,
+	AND A7 2,
+	AND A8 2,
+	OR jiangxueaihaozhe 4, //Warning: Name too long
+	OR O2 3,
+	D_TYPE O2, //Warning: Name conflict
+	D_TYPE D2,
+	NAND N2 1,
+	CLOCK CLK1 5,
+	AND u2he*2w 2; //Unexpected Token: Device name cannot contain *
+CONNECT	S2 => N2.I1,
+	S1 => A1.I1,
+	D1.QBAR => A1.I2,
+	A1 => O1.I1,
+	S1 => A2.I1,
+	D2.QBAR => A2.I2,
+	A2 => O1.I2,
+	D1.Q => A3.I1,
+	D2.QBAR => A3.I2,
+	A3.I2 => D1.Q, //Syntax Error: Not Output & Not Input
+	A3 => O1.I3,
+	A3 => A8.I1,
+	A3.I1 => A4.I2, //Syntax Error: Not Output
+	D1.QBAR => A4.I1,
+	D2.Q => A4.I2,
+	A4 => A6.I2,
+	A4 => A7.I1,
+	S2 => A5.I1,
+	D2.QBAR => A5.I2,
+	A4 => A5.I3, //Semantic Error: Undefined pin
+	A5 => O2.I3,
+	S2 => A6.I1,
+	A6 => O1.I4,
+	N2 => A7.I2,
+	A7 => O2.I1,
+	S1 => A8.I2,
+	A8 => O2.I2,
+	O1 => D1.DATA,
+	O2 => D2.DATA,
+	CLK1 => D1.CLK,
+	CLK1 => D2.CLK //Unexpected Token: Missing a stop symbol
+	D1.Q => A9.I1,
+	D2.Q => A9.I2,
+	S3 => D1.SET,
+	S3 => D2.SET,
+	S4 => D1.CLEAR,
+	D1.QBAR => D2.Q, //Syntax Error: Not Input
+	S4 => D2.CLEAR;
+// Semantic Error: Floating Input
+MONITOR	A9,
+	D1.Q,
+	D3.Q, //Semantic Error: Undefined device
+	D2.Q;
+	
