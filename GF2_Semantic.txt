@@ -1,16 +1,17 @@
 file     =  	"DEVICES", {DEV, ','}, DEV,';', "CONNECT", {CON, ','}, CON, ‘;’, "MONITOR", {MON, ','}, MON, ';'	;
 DEV      =  	("CLOCK", DEV_NAME, digit, {digit})   								|
-		("SWITCH", DEV_NAME, (1|0))          				 				|
-		(("AND" | "NAND" | "OR" | "NOR"), DEV_NAME, [1], digit)   					|
+		("SWITCH", DEV_NAME, (1|0))          				 					|
+		(“SIGGEN”, DEV_NAME, (1|0), {1|0})									|
+		(("AND" | "NAND" | "OR" | "NOR"), DEV_NAME, [1], digit)   						|
 		("D_TYPE", DEV_NAME)                  								|
-		("XOR", DEV_NAME)	             								;
+		("XOR", DEV_NAME)	             									;
 DEV_NAME*= 	(digit | letter), {digit | letter | '_'}								;
-CON      =	O_PIN, '=>', I_PIN										;
-O_PIN    =  	(DEV_NAME)											|
+CON      =	O_PIN, '=>', I_PIN											;
+O_PIN    =  	(DEV_NAME)												|
 		(DEV_NAME, '.', ("Q" | "QBAR"))									;
-I_PIN    =  	DEV_NAME, '.', 'I', [1], digit									|
-		DEV_NAME, '.', ("DATA"|"CLK"|"SET"|"CLEAR")							;
-MON      =      (O_PIN | I_PIN)											;
+I_PIN    =  	DEV_NAME, '.', 'I', [1], digit										|
+		DEV_NAME, '.', ("DATA"|"CLK"|"SET"|"CLEAR")								;
+MON      =     O_PIN													;
 
 
-*DEV_NAME = [0-9a-zA-Z_]+, DEV_NAME can be any combination of letter and number and '_', other than "DEVICES", "CONNECT", "MONITOR", "CLOCK", "SWITCH", "AND", "NAND', "OR", "NOR", "D_TYPE", "XOR"
+*DEV_NAME = [0-9a-zA-Z_]+, DEV_NAME can be any combination of letter and number and '_', other than "DEVICES", "CONNECT", "MONITOR", "CLOCK", "SWITCH", "AND", "NAND', "OR", "NOR", "D_TYPE", "XOR”, “SIGGEN”, “I1”, “I2” etc.
