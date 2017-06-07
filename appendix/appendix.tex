@@ -527,4 +527,10 @@ scanner.cc It is the major cpp file for the scanner part. It performs the readin
  words. It interacts with the parser.cc to receive and send symbols of data types. It also reports error.
 scanner.h it is the header file for the scanner. It contains all the public and private function definitiions and is included in 
 other parts of the programme.
+parser.cc It is the major cpp file for the parser part. It takes in the symbol and word from scanner and performs a logical process
+to make up the whole structure of the digital circuit.
+gui.cc It is the majoy cpp file for the GUI part. It takes the signal and information fed from parser and scanner and turns it into 
+a graphical output. It enables making up and cancelling connections and also changing of the monitored signals.
+devices.cc It is the file for establishing a device in the memory when constructing the digital circuit. It interacts with the parser
+and carry out operations when a new device is read in.
 \end{document}
