@@ -513,5 +513,18 @@ Note: DEV\_NAME can be any combination of letter and number and '\_', \textbf{ot
 
 \newpage
 \section{Description of file system}
-
+Under the Test directory
+Test 1 - Test 16 are designed to test the scanner-parser sub-system, which includes reading in different types of characters 
+to test whether the scanner can read the words and lines correctly without any bugs. Also they test how the subsystem will be 
+handling errors in the definition files. These tests are used in the early testing stage when the scanner and parser are 
+initially merged.
+Test 101 - Test 107 are test definition files designed to demonstrate functionality of the whole programme. They can be opened 
+in the graphical user interface for testing and illustrate how the logic simulator works. The test definition files are written
+ in such a standard that most of the functionalities designed are shown throughout these definition files. Also it also contains
+ a file with errors to demonstrate how the error reporting works and how to fix a definition file in case there are errors.
+In the main directory 
+scanner.cc It is the major cpp file for the scanner part. It performs the reading and processing of the definition files and into
+ words. It interacts with the parser.cc to receive and send symbols of data types. It also reports error.
+scanner.h it is the header file for the scanner. It contains all the public and private function definitiions and is included in 
+other parts of the programme.
 \end{document}
