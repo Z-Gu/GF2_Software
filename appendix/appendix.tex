@@ -18,7 +18,7 @@ Appendix only
 
 \appendix
 \section{Test definition files}
-\subsection{Binary adder}
+\subsection{Test 101: Binary adder}
 %\begin{lstfloat}[H]
 %\begin{lstlisting}[frame=single, caption={Definition file of a 2-bit binary adder}\label{lst:1}]
 2-bit adder\\
@@ -67,7 +67,7 @@ MONITOR	X1,
 
 
 
-\subsection{Vending machine}
+\subsection{Test 102: Vending machine}
 %\begin{lstlisting}[frame=single, caption={Vending machine circuit}\label{lst:2}]
 The control circuit of a vending selling machines at 15p. S1 and S2 corresponds to insertion of 10p and 5p coins. Inserting 2 coins at the same time is not allowed. S3 and S4 sets and resets the flip flops.\\
 \begin{verbatim}
@@ -146,7 +146,7 @@ MONITOR	A9,
 	\label{fig:4}
 \end{figure}
 
-\subsection{Incorrect test definition file}
+\subsection{Test103: Incorrect test definition file}
 %\begin{lstlisting}[frame=single, caption={Faulty vending machine circuit}\label{lst:4}]
 \begin{verbatim}
 //a faulty vending machine where S1 and S2 indicate whether a 10p or 5p are inserted
@@ -386,7 +386,7 @@ Total Warning Count: 2
 %\end{lsverbatim}
 
 \newpage
-\subsection{Test 104}
+\subsection{Test 104: Logic Gates}
 Combination of Logic gates, which can be reduced to the logic expression, $Z = \bar{B}\bar{F} + \bar{D} + \bar{E}(\bar{A} + \bar{B})$\\
 %\begin{lstlisting}[frame=single, caption={File 3}\label{lst:2}]
 \begin{verbatim}
@@ -500,9 +500,9 @@ ID: 31, NAME: CLK1
 \end{verbatim}
 %\end{lstlisting}
 
-\subsection{Test 107}
+\subsection{Test 107: 3-Bit Counter}
 %\begin{lstlisting}[frame=single, caption={File 4 3 Bit Counter}\label{lst:7}]
-3-bit adder\\
+3-Bit Counter\\
 \begin{verbatim}
 DEVICES	AND A1 2,
 XOR X1,
@@ -550,7 +550,7 @@ MONITOR	D3.Q;
 	\centering
 	\includegraphics[width=0.9\linewidth]{figures/test107_GUI.png}
 	\captionsetup{width=.7\linewidth}
-	\caption{3 Bit Counter Output}
+	\caption{3-Bit Counter Output}
 	\label{fig:7}
 \end{figure}
 
@@ -588,7 +588,7 @@ digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
 
 \vspace{20mm}
 Note: DEV\_NAME can be any combination of letter and number and '\_', \textbf{other than} "DEVICES", "CONNECT", "MONITOR", "CLOCK", "SWITCH", "AND", "NAND', "OR", "NOR", "D\_TYPE", "XOR", "SIGGEN", "I1", "I2" etc.
-
+\newpage
 \section{User guide}
 
 \newpage
@@ -597,11 +597,13 @@ Under the Test directory
 Test 1 - Test 16 are designed to test the scanner-parser sub-system, which includes reading in different types of characters 
 to test whether the scanner can read the words and lines correctly without any bugs. Also they test how the subsystem will be 
 handling errors in the definition files. These tests are used in the early testing stage when the scanner and parser are 
-initially merged.
+initially merged.\\
+
 Test 101 - Test 107 are test definition files designed to demonstrate functionality of the whole programme. They can be opened 
 in the graphical user interface for testing and illustrate how the logic simulator works. The test definition files are written
  in such a standard that most of the functionalities designed are shown throughout these definition files. Also it also contains
- a file with errors to demonstrate how the error reporting works and how to fix a definition file in case there are errors.
+ a file with errors to demonstrate how the error reporting works and how to fix a definition file in case there are errors.\\
+ 
 In the main directory 
 scanner.cc It is the major cpp file for the scanner part. It performs the reading and processing of the definition files and into
  words. It interacts with the parser.cc to receive and send symbols of data types. It also reports error.
