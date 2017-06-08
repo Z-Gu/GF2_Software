@@ -1,0 +1,214 @@
+Expect Name Symbol
+***Unexpected Token
+In Line 3
+	SWITCH SWITCH 1, 
+	       ^
+Expect Pin Symbol
+***Unexpected Token
+In Line 4
+	SIGGEN CLK2 1002, 
+	            ^
+***Error: Invalid Switch
+In Line 5
+	SWITCH S4 3, 
+	          ^
+Expect a Number
+***Unexpected Token
+In Line 6
+	AND A1, 
+	      ^
+***Error: Invalid Gate
+In Line 9
+	AND A4 22, 
+	       ^
+***Warning: Name Too Long
+In Line 14
+	OR jiangxueaihaozhe 4, 
+	   ^
+***Warning: Name Conflict
+In Line 16
+	D_TYPE O2, 
+	       ^
+Expect Name Symbol
+***Unexpected Token
+In Line 20
+	AND u2he*2w 2; 
+	    ^
+***Error: Undefined Device
+In Line 22
+	S1 => A1.I1,
+	      ^
+***Error: Undefined Device
+In Line 23
+	D1.QBAR => A1.I2,
+	^
+***Error: Undefined Device
+In Line 23
+	D1.QBAR => A1.I2,
+	           ^
+***Error: Undefined Device
+In Line 24
+	A1 => O1.I1,
+	^
+***Error: Undefined Device
+In Line 24
+	A1 => O1.I1,
+	      ^
+***Error: Undefined Device
+In Line 27
+	A2 => O1.I2,
+	      ^
+***Error: Undefined Device
+In Line 28
+	D1.Q => A3.I1,
+	^
+***Error: Not an Output Pin
+In Line 30
+	A3.I2 => D1.Q, 
+	^
+***Error: Undefined Device
+In Line 30
+	A3.I2 => D1.Q, 
+	         ^
+***Error: Undefined Device
+In Line 31
+	A3 => O1.I3,
+	      ^
+***Error: Not an Output Pin
+In Line 33
+	A3.I1 => A4.I2, 
+	^
+***Error: Undefined Device
+In Line 33
+	A3.I1 => A4.I2, 
+	         ^
+***Error: Undefined Device
+In Line 34
+	D1.QBAR => A4.I1,
+	^
+***Error: Undefined Device
+In Line 34
+	D1.QBAR => A4.I1,
+	           ^
+***Error: Undefined Device
+In Line 35
+	D2.Q => A4.I2,
+	        ^
+***Error: Undefined Device
+In Line 36
+	A4 => A6.I2,
+	^
+***Error: Undefined Device
+In Line 37
+	A4 => A7.I1,
+	^
+***Error: Undefined Device
+In Line 40
+	A4 => A5.I3, 
+	^
+***Error: Undefined Pin
+In Line 41
+	A5 => O2.I3,
+	      ^
+***Error: Undefined Device
+In Line 43
+	A6 => O1.I4,
+	      ^
+***Error: Undefined Pin
+In Line 45
+	A7 => O2.I1,
+	      ^
+***Error: Undefined Pin
+In Line 47
+	A8 => O2.I2,
+	      ^
+***Error: Undefined Device
+In Line 48
+	O1 => D1.DATA,
+	^
+***Error: Undefined Device
+In Line 48
+	O1 => D1.DATA,
+	      ^
+***Error: Undefined Pin
+In Line 49
+	O2 => D2.DATA,
+	^
+***Error: Undefined Device
+In Line 50
+	CLK1 => D1.CLK,
+	        ^
+Expect Stop Symbol
+***Unexpected Token
+In Line 52
+	D1.Q => A9.I1,
+	^
+***Error: Undefined Device
+In Line 53
+	D2.Q => A9.I2,
+	        ^
+***Error: Undefined Device
+In Line 54
+	S3 => D1.SET,
+	^
+***Error: Undefined Device
+In Line 54
+	S3 => D1.SET,
+	      ^
+***Error: Undefined Device
+In Line 55
+	S3 => D2.SET,
+	^
+***Error: Undefined Device
+In Line 56
+	S4 => D1.CLEAR,
+	^
+***Error: Undefined Device
+In Line 56
+	S4 => D1.CLEAR,
+	      ^
+***Error: Undefined Device
+In Line 57
+	D1.QBAR => D2.Q, 
+	^
+***Error: Not an Input Pin
+In Line 57
+	D1.QBAR => D2.Q, 
+	           ^
+***Error: Undefined Device
+In Line 58
+	S4 => D2.CLEAR;
+	^
+Unconnected Input : D2.CLEAR
+Unconnected Input : D2.SET
+Unconnected Input : D2.DATA
+Unconnected Input : O2.CLEAR
+Unconnected Input : O2.SET
+Unconnected Input : O2.CLK
+Unconnected Input : O2.DATA
+Unconnected Input : O2.I3
+Unconnected Input : O2.I2
+Unconnected Input : O2.I1
+Unconnected Input : jiangxue.I4
+Unconnected Input : jiangxue.I3
+Unconnected Input : jiangxue.I2
+Unconnected Input : jiangxue.I1
+Unconnected Input : A7.I1
+Unconnected Input : A6.I2
+Unconnected Input : A3.I1
+***Error: Floating Input
+In Line 60
+MONITOR	A9,
+^
+***Error: Undefined Device
+In Line 60
+MONITOR	A9,
+       	^
+***Error: Undefined Device
+In Line 61
+	D1.Q,
+	^
+***Error: Undefined Device
+In Line 62
+	D3.Q, 
+	^
